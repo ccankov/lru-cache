@@ -1,3 +1,4 @@
+# Implementation of a static array from C
 class StaticArray
   def initialize(capacity)
     @store = Array.new(capacity)
@@ -20,10 +21,11 @@ class StaticArray
   private
 
   def validate!(i)
-    raise "Overflow error" unless i.between?(0, @store.length - 1)
+    raise 'Overflow error' unless i.between?(0, @store.length - 1)
   end
 end
 
+# Custom implementation of Ruby's built-in dynamic array
 class DynamicArray
   include Enumerable
 
@@ -36,11 +38,13 @@ class DynamicArray
 
   def [](i)
     i = @count + i if i < 0
+    return nil if i >= @count || i < 0
     @store[i]
   end
 
   def []=(i, val)
     i = @count + i if i < 0
+    push(nil) until @count == i + 1 if i > @count
     @store[i] = val
   end
 
