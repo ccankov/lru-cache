@@ -24,7 +24,6 @@ class HashMap
       bucket.append(key, val)
       @count += 1
     end
-
   end
 
   def get(key)
@@ -65,7 +64,7 @@ class HashMap
 
   def resize!
     new_num_buckets = num_buckets * 2
-    new_store = Array.new(new_num_buckets){LinkedList.new}
+    new_store = Array.new(new_num_buckets){ LinkedList.new }
     each do |key, val|
       hash = key.hash
       bucket = new_store[hash % new_num_buckets]
